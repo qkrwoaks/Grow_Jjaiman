@@ -10,10 +10,15 @@ public class LoadingManager : MonoBehaviour
     public Slider progressbar;
     public TextMeshProUGUI loadtext;
 
+    public static string loadSceneName;
+
+    public bool flag;
     private void Start()
     {
         StartCoroutine(LoadScnen());
+
     }
+
 
     IEnumerator LoadScnen()
     {
