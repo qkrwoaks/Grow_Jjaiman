@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -29,7 +27,7 @@ public class DatabaseManager : MonoBehaviour
     public void Load()
     {
         TextAsset data = Resources.Load<TextAsset>("PlayerData");
-        playerData = JsonConvert.DeserializeObject<PlayerData>(data.text);
+        playerData = JsonUtility.FromJson<PlayerData>(data.text);
 
 
 
@@ -79,7 +77,7 @@ public class DatabaseManager : MonoBehaviour
         playerData.frenchaisee["JjaiRestaurant"] = GameManager.gm.Franchisee_havable[9];
         playerData.frenchaisee["Fg"] = GameManager.gm.Franchisee_havable[10];
 
-        string data = JsonConvert.SerializeObject(playerData);
+        string data = JsonUtility.ToJson(playerData);
 
         File.WriteAllText(Application.dataPath + "\\Resources\\PlayerData.json", data);
     }
@@ -88,7 +86,7 @@ public class DatabaseManager : MonoBehaviour
     {
 
         TextAsset data = Resources.Load<TextAsset>("resetData");
-        playerData = JsonConvert.DeserializeObject<PlayerData>(data.text);
+        playerData = JsonUtility.FromJson<PlayerData>(data.text);
         SceneManager.LoadScene("LoadScene");
     }
 }
