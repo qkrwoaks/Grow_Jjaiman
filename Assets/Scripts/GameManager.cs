@@ -165,6 +165,10 @@ public class GameManager : MonoBehaviour
         foreach (var item in DatabaseManager.Instance.playerData.charLevel.Values)
         {
             characterLevel[i] = item;
+            if (item > 0)
+            {
+                character[i].SetActive(true);
+            }
             i++;
         }
 

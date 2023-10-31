@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,8 +24,8 @@ public class DatabaseManager : MonoBehaviour
 
     public void Load()
     {
-        TextAsset data = Resources.Load<TextAsset>("PlayerData");
-        playerData = JsonUtility.FromJson<PlayerData>(data.text);
+        string data = File.ReadAllText(Application.persistentDataPath + "\\SaveFolder\\playerData.json");
+        playerData = JsonUtility.FromJson<PlayerData>(data);
 
 
 
@@ -79,7 +77,7 @@ public class DatabaseManager : MonoBehaviour
 
         string data = JsonUtility.ToJson(playerData);
 
-        File.WriteAllText(Application.dataPath + "\\Resources\\PlayerData.json", data);
+        File.WriteAllText(Application.persistentDataPath + "\\SaveFolder\\PlayerData.json", data);
     }
 
     public void resetData()
