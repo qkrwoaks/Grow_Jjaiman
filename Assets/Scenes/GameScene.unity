@@ -12106,7 +12106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd73efb829312a343b42037ddd746ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current_major: 2500
+  current_major: 0
   second_major: 10
   touch_major: 100
   current_major_text: {fileID: 632519896}
@@ -24391,6 +24391,9 @@ MonoBehaviour:
     money: 0
     touchMoney: 0
     secondMoney: 0
+    charLevels: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    realEstate: 00000000000000
+    frenchaisee: 0000000000000000000000
 --- !u!4 &1436603250
 Transform:
   m_ObjectHideFlags: 0

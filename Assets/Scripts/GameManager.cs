@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     #region Major
     [Header("Major")]
     public ulong current_major = 0; // 지금 현재 가지고 있는 전공력
-    public ulong second_major = 1;  // 초마다 쌓일 전공력
-    public ulong touch_major = 1;   // 터치시마다 쌓일 전공력
+    public ulong second_major = 10; // 초마다 쌓일 전공력
+    public ulong touch_major = 100; // 터치시마다 쌓일 전공력
     #endregion
 
     #region Text
@@ -133,8 +133,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     private void Start()
@@ -162,7 +160,7 @@ public class GameManager : MonoBehaviour
 
         int i = 0;
 
-        foreach (var item in DatabaseManager.Instance.playerData.charLevel.Values)
+        foreach (var item in DatabaseManager.Instance.playerData.charLevels)
         {
             characterLevel[i] = item;
             if (item > 0)
@@ -174,18 +172,19 @@ public class GameManager : MonoBehaviour
 
         i = 0;
 
-        foreach (var item in DatabaseManager.Instance.playerData.realEstate.Values)
+        foreach (var item in DatabaseManager.Instance.playerData.realEstate)
         {
             real_estate_havable[i] = item;
             i++;
         }
 
         i = 0;
-        foreach (var item in DatabaseManager.Instance.playerData.frenchaisee.Values)
+        foreach (var item in DatabaseManager.Instance.playerData.frenchaisee)
         {
             Franchisee_havable[i] = item;
             i++;
         }
+        Character_Init();
     }
 
 
@@ -367,7 +366,7 @@ public class GameManager : MonoBehaviour
             characterUpgradeText[i].text = "비용: " + string.Format("{0:#,0}", (i + 1) * 2500 * characterLevel[i] + "\n +" + string.Format("{0:#,0}", ((i + 1) * 2500 * characterLevel[i]) / 2)) + " 클릭";
             if (characterLevel[i] == 0)
             {
-                if (characterLevel[i - 1] < 10)
+                if (i > 0 && characterLevel[i - 1] < 10)
                 {
                     characterNameText[i].text = character_Name[i] + " 잠김 " + "(조건 : " + character_Name[i - 1] + " 10레벨)";
                 }
